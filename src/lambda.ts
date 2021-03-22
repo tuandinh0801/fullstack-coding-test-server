@@ -33,7 +33,11 @@ function bootstrapServer(): Promise<Server> {
       const document = SwaggerModule.createDocument(app, config);
       SwaggerModule.setup('api', app, document);
 
-      app.enableCors();
+      app.enableCors({
+        origin: '*',
+        methods: '*',
+        allowedHeaders: '*',
+      });
       app.init();
     })
     .then(() => serverless.createServer(expressApp));

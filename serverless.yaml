@@ -9,16 +9,26 @@ plugins:
 
 provider:
  name: aws
- runtime: nodejs14.x
+ runtime: nodejs12.x
  profile: tuandtb
  region: ap-southeast-1
 
 functions:
- main: # The name of the lambda function
-   # The module 'handler' is exported in the file 'src/lambda'
+ main:
    handler: src/lambda.handler
    events:
      - http:
          method: any
          path: /{any+}
-         cors: true
+         cors:
+          origin: '*'
+          methods: ANY
+          headers:
+            - Content-Type
+            - X-Amz-Date
+            - Authorization
+            - X-Api-Key
+            - X-Amz-Security-Token
+            - X-Amz-User-Agent
+          allowCredentials: false
+          cacheControl: max-age=600, s-maxage=600, proxy-revalidate
