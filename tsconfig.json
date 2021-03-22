@@ -8,8 +8,12 @@
     "allowSyntheticDefaultImports": true,
     "target": "es2017",
     "sourceMap": true,
+    "noImplicitAny": false,
+    "lib": [ "es2015", "dom" ],
+    "noLib": false,
+    "skipLibCheck": true,
     "outDir": "./dist",
     "baseUrl": "./",
-    "incremental": true
-  }
+  },
+  "exclude": ["node_modules"]
 }

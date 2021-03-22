@@ -7,7 +7,7 @@ import {
   UnauthorizedException,
 } from '@nestjs/common';
 import { SignUpDto } from './dto/signup.dto';
-import { User } from 'src/users/entities/user.entity';
+import { User } from '../users/entities/user.entity';
 import { AuthService } from './auth.service';
 import { LoginDto } from './dto/login.dto';
 
@@ -29,7 +29,6 @@ export class AuthController {
   @Post('/login')
   async login(@Body() body: LoginDto): Promise<any> {
     try {
-
       const user = await this.authService.login(body.idToken);
 
       if (!user) {
@@ -39,7 +38,6 @@ export class AuthController {
       return user;
     } catch (error) {
       throw new HttpException(error.message, HttpStatus.BAD_REQUEST);
-
     }
   }
 }
